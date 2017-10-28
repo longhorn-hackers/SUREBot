@@ -20,15 +20,29 @@ server.post('/api/messages', connector.listen());
 // Receive messages from the user and respond by echoing each message back (prefixed with 'You said:')
 var bot = new builder.UniversalBot(connector, [
     function (session) {
-        session.send("Hi! This is SUREBot!");
-        builder.Prompts.text(session, "To get started, what's your first name and UTEID (separate by a space e.g. Jason he1881)?");
+        builder.Prompts.text(session, "Hi! This is SUREBot! To get started, what's your first name and UTEID (separate by a space e.g. Jason he1881)?");
     },
     function (session, results) {
-        session.send("Got your name!");
-        session.dialogData.userName = results.response;
-        session.send("Let's return your information");
-        // Process request and display reservation details
-         session.send(`Reservation confirmed. Reservation details: Name: ${session.dialogData.userName}`);
-         session.endDialog();
+        var string = results.response.split(" ");
+        var name = string[0];
+        var UTEID = string[1];
+        session.dialogData.userName = name;
+        session.dialogData.eid = UTEID;
+        builder.Prompts.text(session, `Hi, ${session.dialogData.userName}. Where do you want to be picked up?`);
+    },
+    function (session, results) {
+        session.dialogData.pickUp = results.response;
+        builder.Prompts.text(session, "Gotcha. Now, to what address do you want to go?");
+    },
+    function (session, results) {
+        session.dialogData.dropOff = results.response;
+        builder.Prompts.text(session, "Great! One last thing, what’s the best number to contact you at?");
+    },
+    function (session, results){
+        session.dialogData.phone = results.response;
+        session.send("Thanks! Someone from SUREWalk will contact you soon! :) Hook’em \\m/");
+        session.dialogData.volunteer = "Bot";
+        session.dialogData.status = "Open";
+        session.endDialog();
     }
 ]);
