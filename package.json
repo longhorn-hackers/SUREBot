@@ -21,6 +21,7 @@
   "homepage": "https://github.com/longhorn-hackers/SUREBot#readme",
   "dependencies": {
     "botbuilder": "^3.11.0",
-    "restify": "^6.2.3"
+    "restify": "^6.2.3",
+    "yallist": "^3.0.2"
   }
 }
