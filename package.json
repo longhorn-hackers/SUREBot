@@ -1,0 +1,26 @@
+{
+  "name": "surebot",
+  "version": "1.0.0",
+  "description": "Github version of the surebot from  HackTX 2017",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/longhorn-hackers/SUREBot.git"
+  },
+  "keywords": [
+    "surebot"
+  ],
+  "author": "Jacqueline Gibson",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/longhorn-hackers/SUREBot/issues"
+  },
+  "homepage": "https://github.com/longhorn-hackers/SUREBot#readme",
+  "dependencies": {
+    "botbuilder": "^3.11.0",
+    "restify": "^6.2.3"
+  }
+}
